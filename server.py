@@ -104,6 +104,7 @@ def get_brain_state(state: str = "neutral") -> dict:
     p = band_powers(sig, fs)
     # Round to 3 decimals so the numbers are easy for Claude to read out
     return {
+        "source": SOURCE,  # "synthetic" or "muse", so Claude knows where the data came from
         "focus": round(focus(p), 3),
         "calm": round(calm(p), 3),
         "fatigue": round(fatigue(p), 3),
