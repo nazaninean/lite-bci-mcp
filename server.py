@@ -4,14 +4,14 @@ import os
 import sys
 import time
 
-# FastMCP turns the Python functions into tools that Claude can call
+# FastMCP turns the Python functions into tools that claude can call
 from fastmcp import FastMCP
 
 from dsp import FS, band_powers, generate_eeg
 
 from metrics import calm, fatigue, focus
 
-# Send log messages to stderr instead of stdout so Logs show up in Claude Desktop's logs.
+# Send log messages to stderr instead of stdout so logs show up in claude desktop's logs.
 logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 
 # Create the server
