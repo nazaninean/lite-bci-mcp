@@ -101,13 +101,13 @@ To use the Muse 2 instead of synthetic data, add `"env": { "BCI_SOURCE": "muse" 
 add this later
 
 ## References
-Barry, R. J., Clarke, A. R., Johnstone, S. J., Magee, C. A., & Rushby, J. A. (2007). EEG differences between eyes-closed and eyes-open resting conditions. Clinical Neurophysiology, 118(12), 2765–2773. https://doi.org/10.1016/j.clinph.2007.07.028  
-CircuitsComputers, E. (n.d.). Bci-mcp: Stream Live EEG Brain State Into Claude Over MCP. Instructables. Retrieved November 1, 2026, from https://www.instructables.com/Bci-mcp-Stream-Live-EEG-Brain-State-Into-Claude-Ov/  
-Ehtesham, A., Singh, A., Gupta, G. K., & Kumar, S. (2025). A survey of agent interoperability protocols: Model Context Protocol (MCP), Agent Communication Protocol (ACP), Agent-to-Agent Protocol (A2A), and Agent Network Protocol (ANP) (arXiv:2505.02279). arXiv. https://doi.org/10.48550/arXiv.2505.02279  
-Enkhbold470/bci-mcp: Stream live EEG brain state (focus, calm, attention) from any EEG device into Claude and any MCP client—A real Model Context Protocol server + brain-computer interface toolkit. (n.d.). Retrieved November 1, 2026, from https://github.com/enkhbold470/bci-mcp   
-Lim, W. L., Sourina, O., & Wang, L. P. (2018). STEW: Simultaneous Task EEG Workload Data Set. IEEE Transactions on Neural Systems and Rehabilitation Engineering, 26(11), 2106–2114. https://doi.org/10.1109/TNSRE.2018.2872924  
-Mikhaylov, D., Saeed, M., Husain Alhosani, M., & F. Al Wahedi, Y. (2024). Comparison of EEG Signal Spectral Characteristics Obtained with Consumer- and Research-Grade Devices. Sensors, 24(24), 8108. https://doi.org/10.3390/s24248108  
-Pope, A. T., Bogart, E. H., & Bartolome, D. S. (1995). Biocybernetic system evaluates indices of operator engagement in automated task. Biological Psychology, EEG in Basic and Applied Settings, 40(1), 187–195. https://doi.org/10.1016/0301-0511(95)05116-3  
-Schalk, G. (2009). EEG Motor Movement/Imagery Dataset. PhysioNet. https://doi.org/10.13026/C28G6P  
-Wang, J., & Wang, M. (2021). Review of the emotional feature extraction and classification using EEG signals. Cognitive Robotics, 1, 29–40. https://doi.org/10.1016/j.cogr.2021.04.001  
+- Barry, R. J., Clarke, A. R., Johnstone, S. J., Magee, C. A., & Rushby, J. A. (2007). EEG differences between eyes-closed and eyes-open resting conditions. Clinical Neurophysiology, 118(12), 2765–2773. https://doi.org/10.1016/j.clinph.2007.07.028  
+- CircuitsComputers, E. (n.d.). Bci-mcp: Stream Live EEG Brain State Into Claude Over MCP. Instructables. Retrieved November 1, 2026, from https://www.instructables.com/Bci-mcp-Stream-Live-EEG-Brain-State-Into-Claude-Ov/  
+- Ehtesham, A., Singh, A., Gupta, G. K., & Kumar, S. (2025). A survey of agent interoperability protocols: Model Context Protocol (MCP), Agent Communication Protocol (ACP), Agent-to-Agent Protocol (A2A), and Agent Network Protocol (ANP) (arXiv:2505.02279). arXiv. https://doi.org/10.48550/arXiv.2505.02279  
+- Enkhbold470/bci-mcp: Stream live EEG brain state (focus, calm, attention) from any EEG device into Claude and any MCP client—A real Model Context Protocol server + brain-computer interface toolkit. (n.d.). Retrieved November 1, 2026, from https://github.com/enkhbold470/bci-mcp   
+- Lim, W. L., Sourina, O., & Wang, L. P. (2018). STEW: Simultaneous Task EEG Workload Data Set. IEEE Transactions on Neural Systems and Rehabilitation Engineering, 26(11), 2106–2114. https://doi.org/10.1109/TNSRE.2018.2872924  
+- Mikhaylov, D., Saeed, M., Husain Alhosani, M., & F. Al Wahedi, Y. (2024). Comparison of EEG Signal Spectral Characteristics Obtained with Consumer- and Research-Grade Devices. Sensors, 24(24), 8108. https://doi.org/10.3390/s24248108  
+- Pope, A. T., Bogart, E. H., & Bartolome, D. S. (1995). Biocybernetic system evaluates indices of operator engagement in automated task. Biological Psychology, EEG in Basic and Applied Settings, 40(1), 187–195. https://doi.org/10.1016/0301-0511(95)05116-3  
+- Schalk, G. (2009). EEG Motor Movement/Imagery Dataset. PhysioNet. https://doi.org/10.13026/C28G6P  
+- Wang, J., & Wang, M. (2021). Review of the emotional feature extraction and classification using EEG signals. Cognitive Robotics, 1, 29–40. https://doi.org/10.1016/j.cogr.2021.04.001  
 Welcome to BrainFlow’s documentation! —BrainFlow documentation. (n.d.). Retrieved November 2, 2026, from https://brainflow.readthedocs.io/en/stable/ 
