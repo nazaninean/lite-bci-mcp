@@ -52,33 +52,105 @@ def muse_chunk(seconds=4):
     from brainflow.board_shim import BoardShim, BoardIds, BrainFlowInputParams
 
     global _board
-    board_id = BoardIds.MUSE_2_BOARD.value  # our headset is a Muse 2
+    ##board_id = BoardIds.MUSE_2_BOARD.value  # our headset is a Muse 2
+    if os.environ.get("BCI_BOARD") == "synthetic":
+        board_id = BoardIds.SYNTHETIC_BOARD.value
+    else:
+        board_id = BoardIds.MUSE_2_BOARD.value
 
     # First call only. Connect over Bluetooth and start collecting data.
     if _board is None:
-        _board = BoardShim(board_id, BrainFlowInputParams())
-        _board.prepare_session()  # connects to the headset
-        _board.start_stream()     # keeps filling a buffer in the background
-        time.sleep(seconds + 1)   # wait for the buffer to fill up
+        params = BrainFlowInputParams()
+        # Scan for up to 30 seconds. The default is 6, which is too short
+        # in a room full of Bluetooth devices.
+        params.timeout = 30
+        # Connect to one specific headset, like "Muse-3724"
+        serial = os.environ.get("BCI_MUSE_SERIAL")
+        if serial:
+            params.serial_number = serial
+        board = BoardShim(board_id, params)
+        try:
+            board.prepare_session()  # raises an error if it can't connect
+            board.start_stream()
+            time.sleep(seconds + 1)  # wait for the buffer to fill up
+        except Exception:
+            # Release the headset so the next try starts clean
+            try:
+                board.release_session()
+            except Exception:
+                pass
+            raise
+        # Only save the board once the connection worked
+        _board = board
         logging.info("Muse 2 connected")
 
-    # Muse 2 samples at 256 Hz, different from PhysioNet's 160 Hz,
-    # so ask BrainFlow for the real value
+    # Muse 2 samples at 256 Hz, so ask BrainFlow for the real value
     fs = BoardShim.get_sampling_rate(board_id)
 
-    # Grab the newest samples from the buffer without clearing it, which
-    # gives a rolling "live" window. Rows are channels, columns are samples.
+    # Grab the newest samples from the buffer without clearing it
     data = _board.get_current_board_data(int(seconds * fs))
 
-    # take only the rows that hold EEG then average them into one signal.
+    # Keep only the EEG rows, then average the channels into one signal
     eeg_rows = BoardShim.get_eeg_channels(board_id)
     return data[eeg_rows].mean(axis=0), fs
+
+# The LSL connection
+_inlet = None
+_lsl_window = None  # rolling window that holds the most recent samples
+
+
+def lsl_chunk(seconds=4):
+    """Read the newest few seconds of EEG from an LSL stream (made by
+    muselsl). Returns the signal and its sampling rate."""
+    from collections import deque
+
+    import numpy as np
+    from pylsl import StreamInlet, resolve_byprop
+
+    global _inlet, _lsl_window
+
+    # First call only. Find the EEG stream and open it.
+    if _inlet is None:
+        streams = resolve_byprop("type", "EEG", timeout=15)
+        if not streams:
+            raise RuntimeError(
+                "No LSL EEG stream found. Start one first with: "
+                "muselsl stream --name Muse-XXXX"
+            )
+        _inlet = StreamInlet(streams[0], max_buflen=30)
+        fs = _inlet.info().nominal_srate()
+        _lsl_window = deque(maxlen=int(seconds * fs))
+        logging.info("Connected to LSL stream %s at %s Hz", _inlet.info().name(), fs)
+
+    fs = _inlet.info().nominal_srate()
+
+    # Keep pulling until the window is full, or give up after a while
+    deadline = time.time() + seconds + 10
+    while True:
+        # Pull everything that arrived since the last call. Old samples fall
+        # off the front of the deque, so the window is always the newest ones.
+        samples, _ = _inlet.pull_chunk(timeout=0.0, max_samples=20000)
+        if samples:
+            rows = np.array(samples)
+            # Muse 2 sends 4 EEG channels plus an AUX channel, so keep the
+            # first 4 and average them into one signal
+            eeg = rows[:, : min(4, rows.shape[1])]
+            _lsl_window.extend(eeg.mean(axis=1))
+        if len(_lsl_window) >= _lsl_window.maxlen:
+            break
+        if time.time() > deadline:
+            raise RuntimeError("Not enough EEG data arriving from the LSL stream")
+        time.sleep(0.2)
+
+    return np.array(_lsl_window), fs
 
 def latest_chunk(state="neutral"):
     """Return (signal, sampling_rate) for the latest 4 seconds of EEG"""
     # Real headset
     if SOURCE == "muse":
         return muse_chunk()
+    if SOURCE == "muse_lsl":
+        return lsl_chunk()
     
 # simulated data. Start with every band at the default amplitude of 1.0.
     amps = {band: 1.0 for band in ["delta", "theta", "alpha", "beta", "gamma"]}
