@@ -110,4 +110,4 @@ add this later
 - Pope, A. T., Bogart, E. H., & Bartolome, D. S. (1995). Biocybernetic system evaluates indices of operator engagement in automated task. Biological Psychology, EEG in Basic and Applied Settings, 40(1), 187–195. https://doi.org/10.1016/0301-0511(95)05116-3  
 - Schalk, G. (2009). EEG Motor Movement/Imagery Dataset. PhysioNet. https://doi.org/10.13026/C28G6P  
 - Wang, J., & Wang, M. (2021). Review of the emotional feature extraction and classification using EEG signals. Cognitive Robotics, 1, 29–40. https://doi.org/10.1016/j.cogr.2021.04.001  
-Welcome to BrainFlow’s documentation! —BrainFlow documentation. (n.d.). Retrieved November 2, 2026, from https://brainflow.readthedocs.io/en/stable/ 
+- Welcome to BrainFlow’s documentation! —BrainFlow documentation. (n.d.). Retrieved November 2, 2026, from https://brainflow.readthedocs.io/en/stable/ 
