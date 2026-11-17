@@ -98,7 +98,9 @@ To use the Muse 2 instead of synthetic data, add `"env": { "BCI_SOURCE": "muse" 
 | `test_server.py` | Calls the tools without Claude Desktop |
 
 ## Limitations
-add this later
+1. The metrics used in this project are rough proxies and are not clinical
+2. Muse headset only provides data for 4 channels and the quality might not be as good as conventional clinical grade EEG due to conductivity and channel number limitations
+3. This version of the code is currently only available to be paired with a Muse 2 headset, further addition of other consumer EEG device models is a possible update
 
 ## References
 - Barry, R. J., Clarke, A. R., Johnstone, S. J., Magee, C. A., & Rushby, J. A. (2007). EEG differences between eyes-closed and eyes-open resting conditions. Clinical Neurophysiology, 118(12), 2765–2773. https://doi.org/10.1016/j.clinph.2007.07.028  
