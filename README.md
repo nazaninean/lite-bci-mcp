@@ -196,7 +196,12 @@ To check the pipeline on real EEG, we compare eyes open and eyes closed baseline
 | `test_server.py` | Calls the tools without Claude Desktop |
 
 ## Limitations
-add later
+1. The metrics used in this project are rough proxies and are not clinical.
+3. Muse headset only provides data for 4 channels and the quality might not be as good as conventional clinical grade EEG due to conductivity and channel number limitations.
+3. This version of the code is currently only available to be paired with a Muse 2 headset, further addition of other consumer EEG device models is a possible update.
+4. This version of BCI-MCP uses only 3 matrices of measurement: calm, focus, fatigue.
+5. Artifacts, such as eye-blinking and muscle tension, add amplitude which is likely to overlap with real neural signals. The software cannot tell these apart from brain activity.
+6. Additional hardware (e.g., Lab Streaming Layer (LSL) stream) may be required for data translation between the Muse headset and Python program.
 
 ## References
 
