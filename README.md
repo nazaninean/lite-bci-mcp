@@ -4,7 +4,7 @@ A simplified MCP server that lets Claude read and explain EEG brain state, built
 
 The EEG signal goes through a small pipeline (filter, band powers, metrics), and Claude reads the results through three tools. Claude never sees the raw EEG, only the numbers the pipeline produces.
 
-The design is adapted from [bci-mcp](https://github.com/enkhbold470/bci-mcp) by enkhbold470. This is our own simplified rebuild, not a fork, and it targets the Muse 2 specifically.
+The design is adapted from [bci-mcp](https://github.com/enkhbold470/bci-mcp) by enkhbold470. This is our own simplified rebuild and it works for Muse 2 specifically.
 
 ## How it works
 
