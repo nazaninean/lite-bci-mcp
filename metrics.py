@@ -24,3 +24,7 @@ def fatigue(p):
     Source: Eoh et al. (2005), as cited in the bci-mcp documentation.
     """
     return (p["theta"] + p["alpha"]) / p["beta"]
+
+def relative_alpha(p):
+    """Alpha power as a share of the total power across all five bands."""
+    return p["alpha"] / sum(p.values())
